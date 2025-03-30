@@ -32,11 +32,14 @@ public class DriverManager {
     }
   }
 
-  public static void main(String[] args) {
-    DriverManager manager = new DriverManager();
-    manager.setupAppium();
-    manager.setupSeleniumDriver();
+  public void setup(){
+    if(driverProperties.getProperty("ennvironment", "Web").equalsIgnoreCase("Mobile")){
+      setupSeleniumDriver();
+    } else {
+      setupAppium();
+    }
   }
+
 
   private void loadProperties(Properties properties, String filePath) {
     properties = new Properties();
